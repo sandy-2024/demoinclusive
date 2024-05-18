@@ -12,7 +12,7 @@ const About = () => {
     </h2>
     <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
       <div className="accordion-body">
-      InclusiveBizHub is driven by a set of ambitious goals and objectives aimed at creating a positive impact on society and the business community alike. Our first objective is to raise awareness and inspire active participation in pressing social causes, leveraging our platform to amplify voices and mobilize action. We are committed to fostering collaboration among communities, both locally and globally, to address regional and worldwide challenges effectively. 
+      InclusiveBizHub is driven by a set of ambitious goals and objectives aimed at creating a positive impact on society and the business community alike. Our first objective is to raise awareness and inspire active participation in pressing social causes, leveraging our platform to amplify voices and mobilize action. We are committed to fostering collaboration among communities, both locally and globally, to address regional and worldwide challenges effectively.
       </div>
     </div>
   </div>
