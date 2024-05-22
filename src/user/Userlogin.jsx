@@ -14,7 +14,7 @@ function Userlogin() {
       
         <Usernav />
         <div className="Container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-        <h1 style={{alignContent: "center"}}>Welcome ABC</h1>
+        <h1 style={{alignContent: "center"}}>Welcome Inclusive</h1>
         <h3>Add causes</h3>
         </div>
       </div>
