@@ -1,20 +1,32 @@
 import React from "react";
-import Contact from "./components/Contact";
 import { Link } from "react-router-dom";
+import { jwtDecode } from 'jwt-decode';
 
 const Navbar = () => {
+  const isAuthenticated = () => {
+    // Check if the user is authenticated
+    return !!localStorage.getItem('token'); // Example, adapt based on your auth logic
+  };
+  const isAdmin = () => {
+    // Check if the user is authenticated and has admin role
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+
+    // Decode the token to check user role
+    const decodedToken = jwtDecode(token); // Assuming you're using jwt-decode library
+    return decodedToken.role === 'admin';
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             <img
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAjrVb7JL78T5Q_moXZGsNIrbrkjl1gVfenzmrTSOCHka4ItVpWYzyjjU_ddpfnaV-yzadYLpp2DwWCeky1qF6QuXJFdSk5n9OicVJCyVtY0DfGzdNZlv2oc-1vbH07ikExeXOXVc6wYpHXRLi3nWK4UJMSrOGI7FluC3VyQaYe8Rv2jwLnsAv1pQFlusn/s320/Logo.png"
+              src="./src/assets/logo.svg"
               alt="InclusiveBizHub"
               height={100}
               width={100}
               className="object-contain"
-              
             />
           </Link>
           <button
@@ -31,11 +43,7 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/"
-                >
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
                 </Link>
               </li>
@@ -49,22 +57,29 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  Services
-                </Link>
-              </li> */}
               <li className="nav-item">
-                <Link className="nav-link" to="/SocialCauses">
+                <Link className="nav-link" to="/social-causes">
                   Social Causes
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/campaigns">
+                  Campaigns
+                </Link>
+              </li>
+              {isAuthenticated() && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/userdashboard">
+                    User Dashboard
+                  </Link>
+                </li>
+                
+              )}
             </ul>
-
             <div className="dropdown">
               <Link
                 className="nav-link dropdown-toggle"
-                href="#"
+                to="#"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -86,7 +101,12 @@ const Navbar = () => {
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
-                
+                <li>
+                {isAuthenticated() && isAdmin() &&(
+                  <Link className="dropdown-item" to="/admindashboard">
+                    Admin
+                  </Link>)}
+                </li>
               </ul>
             </div>
           </div>

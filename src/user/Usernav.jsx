@@ -8,7 +8,7 @@ const Usernav = () => {
         <div className="container-fluid">
           <Link className="navbar-brand" to="#">
             <img
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAjrVb7JL78T5Q_moXZGsNIrbrkjl1gVfenzmrTSOCHka4ItVpWYzyjjU_ddpfnaV-yzadYLpp2DwWCeky1qF6QuXJFdSk5n9OicVJCyVtY0DfGzdNZlv2oc-1vbH07ikExeXOXVc6wYpHXRLi3nWK4UJMSrOGI7FluC3VyQaYe8Rv2jwLnsAv1pQFlusn/s320/Logo.png"
+              src="./src/assets/logo.svg"
               alt="InclusiveBizHub"
               height={100}
               width={100}
@@ -33,17 +33,21 @@ const Usernav = () => {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/userlogin"
+                  to="#"
                 >
                   Add Causes
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Mypart">
+                <Link className="nav-link" to="#">
                   My participations
                 </Link>
               </li>
-              
+              <li className="nav-item">
+                <Link className="nav-link" to="#">
+                  List
+                </Link>
+              </li>
               
             </ul>
 
@@ -60,11 +64,15 @@ const Usernav = () => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/myprofile">
+                  <Link className="dropdown-item" to="#">
                     My Profile
                   </Link>
                 </li>
-                
+                <li>
+                  <Link className="dropdown-item" to="#">
+                    Setting
+                  </Link>
+                </li>
                 <li>
                   <hr className="dropdown-divider" />
                 </li>

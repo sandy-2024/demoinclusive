@@ -1,0 +1,30 @@
+.create-cause-container {
+    min-height: 80vh; /* Ensure the container takes up at least 80% of the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.create-cause-form .form-group {
+    margin-bottom: 15px;
+}
+
+.create-cause-form .form-control {
+    border-radius: 4px;
+}
+
+.create-cause-form .btn {
+    border-radius: 4px;
+}
+
+.create-cause-container h2 {
+    color: #333;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 767px) {
+    .create-cause-container {
+        padding: 10px;
+    }
+}

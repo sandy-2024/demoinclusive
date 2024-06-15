@@ -1,64 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { FaLeaf, FaGraduationCap, FaHeartbeat, FaHandHoldingUsd, FaVenus } from 'react-icons/fa';
+
+const iconMap = {
+  'Environmental Protection': <FaLeaf size={40} color="green" />,
+  'Education for All': <FaGraduationCap size={40} color="blue" />,
+  'Healthcare Improvement': <FaHeartbeat size={40} color="red" />,
+  'Poverty Alleviation': <FaHandHoldingUsd size={40} color="goldenrod" />,
+  'Gender Equality': <FaVenus size={40} color="purple" />,
+};
 
 const SocialCauses = () => {
+  const [approvedCauses, setApprovedCauses] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchApprovedCauses = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+
+        const response = await axios.get('http://localhost:8001/api/causes/approved', config);
+        setApprovedCauses(response.data);
+      } catch (err) {
+        console.error('Error fetching approved causes:', err);
+        setError(err.response?.data?.error || 'An unexpected error occurred');
+      }
+    };
+
+    fetchApprovedCauses();
+  }, []);
   return (
-    <div className="container pt-5">
+    <div className="container mt-4" style={{ marginBottom: '200px' }}>
+      <h2 className="text-center mb-4">Social Causes We Support</h2>
+      {error && <p className="text-danger">{error}</p>}
       <div className="row">
-        <div className="col-md-4 mb-4">
-          <div className="card" style={{ width: '18rem' }}>
-            <img src="https://cdn.shopify.com/s/files/1/0564/9321/1807/articles/1._anh_bia_2b83c021-34fe-465e-8a3c-520e5c73e9c5.jpg?v=1701595625" className="card-img-top" alt="Environment Protection" />
-            <div className="card-body">
-              <h5 className="card-title">Environment Protection</h5>
-              <p className="card-text">Environmental protection is the practice of protecting the natural environment by individuals, groups and governments.</p>
-              <Link to="/login" className="btn btn-primary">
-                Learn more
-              </Link>
+        {approvedCauses.length === 0 ? (
+          <p className="text-center">No approved causes to display.</p>
+        ) : (
+          approvedCauses.map((cause) => (
+            <div key={cause.CauseID} className="col-md-4 mb-4">
+              <div className="card h-100 shadow-sm">
+                <img src={cause.imageUrl || 'https://via.placeholder.com/300'} className="card-img-top" alt={cause.Title} />
+                <div className="card-body text-center">
+                  <div className="mb-3">{iconMap[cause.Title]}</div>
+                  <h5 className="card-title">{cause.Title}</h5>
+                  <p className="card-text">{cause.Description}</p>
+                  <Link to={`/causes/${cause.CauseID}`} className="btn btn-primary">
+                    Learn More
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 mb-4">
-          <div className="card" style={{ width: '18rem' }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV_YemtxMCpa19VRnqKlwrnXE2yYgKVIXakg&s" className="card-img-top" alt="Education for all" />
-            <div className="card-body">
-              <h5 className="card-title">Education for all</h5>
-              <p className="card-text">Education is the basic building block of every society.</p>
-              <Link to="/login" className="btn btn-primary">
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 mb-4">
-          <div className="card" style={{ width: '18rem' }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yrFawHqcdKpYscC8WHPG4lTTvgoHNL5z8g&s" className="card-img-top" alt="Healthcare Improvement" />
-            <div className="card-body">
-              <h5 className="card-title">Healthcare Improvement</h5>
-              <p className="card-text">Quality improvement is the framework used to systematically improve care.</p>
-              <Link to="/login" className="btn btn-primary">
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 mb-4">
-          <div className="card" style={{ width: '18rem' }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ8uPZyfjmgKWgqFMjAjP8esSMRWsN_juYtA&s" className="card-img-top" alt="Poverty alleviation" />
-            <div className="card-body">
-              <h5 className="card-title">Poverty alleviation</h5>
-              <p className="card-text">Poverty reduction, poverty relief, or poverty alleviation is a set of measures, both economic and humanitarian, that are intended to permanently lift people out of poverty.</p>
-              <Link to="/login" className="btn btn-primary">
-                Learn more
-              </Link>
-            </div>
-          </div>
-        </div>
+          ))
+        )}
       </div>
     </div>
   );
 };
 
-export default SocialCauses;
+
+
+
+export default SocialCauses

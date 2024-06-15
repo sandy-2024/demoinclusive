@@ -1,0 +1,25 @@
+/* Responsive styles for CampaignList */
+.container {
+    max-width: 900px; /* Adjust max-width as per your design */
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .list-group-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .list-group-item {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .list-group-item {
+      padding: 8px;
+    }
+  }
