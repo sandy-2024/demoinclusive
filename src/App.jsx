@@ -5,7 +5,7 @@ import About from "./components/About";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Home from "./components/Home";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import SocialCauses from "./components/SocialCauses";
 import backgroundImage from "../src/assets/home2.png";
