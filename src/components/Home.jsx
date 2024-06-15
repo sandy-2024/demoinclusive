@@ -3,16 +3,6 @@ import { Link } from "react-router-dom";
 
 
 const Home = () => {
-
-
-const jumbotron = {
-  backgroundColor: '#f4511e',
-  color: '#fff',
-  padding: '100px 25px'
-};
-
-
-
   const buttonStyle = {
     margin: '0 10px', // Add some space between buttons
     padding: '10px 20px',
@@ -55,7 +45,7 @@ const jumbotron = {
         <Link to="/SocialCauses" className="btn btn-secondary m-2">See Causes</Link>
       </div>
 
-      <div className="container text-center mt-5" style={{paddingBottom: "3rem"}}>
+      <div className="container text-center mt-5">
         <div
           style={{
             color: "black",
@@ -68,26 +58,6 @@ const jumbotron = {
           </span>
         </div>
       </div>
-      <div className="jumbotron text-center" style={{ backgroundColor: 'orange', padding: '2rem' }}>
-      <h1 className="display-4">Get Updated!</h1>
-      <p >We specialize in cause solution.</p>
-      <form className="form-inline justify-content-center" style={{ maxWidth: '400px', margin: '0 auto' }}>
-        <div className="input-group" style={{ width: '100%' }}>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email Address"
-            required
-            style={{ flex: 1 }}
-          />
-          <div className="input-group-append">
-            <button type="button" className="btn btn-danger">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
     </>
   );
 };
