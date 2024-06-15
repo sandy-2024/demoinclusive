@@ -14,7 +14,7 @@ function Userlogin() {
               <div className="mb-3">
                 <label htmlFor="causeSelect" className="form-label fw-bold">Select the cause</label>
                 <select id="causeSelect" className="form-select" aria-label="Default select example">
-                  <option defaultValue>Select the cause</option>
+                  <option defaultValue>Select cause</option>
                   <option value="1">Environment Protection</option>
                   <option value="2">Education For All</option>
                   <option value="3">Health care Improvement</option>
